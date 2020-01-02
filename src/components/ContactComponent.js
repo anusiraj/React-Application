@@ -91,7 +91,7 @@ class Contact extends Component {
                                          messages = {{
                                              required : "Required",
                                              minLength : 'Must be greater than 2 characters',
-                                             maxlength : "Must be 15 characters or less"
+                                             maxLength : "Must be 15 characters or less"
 
                                          }}>
                                             
@@ -114,7 +114,7 @@ class Contact extends Component {
                                          messages = {{
                                              required : "Required",
                                              minLength : "Must be greater than 2 characters",
-                                             maxlength : "Must be 15 characters or less"
+                                             maxLength : "Must be 15 characters or less"
 
                                          }}>
                                             
@@ -137,7 +137,7 @@ class Contact extends Component {
                                          messages = {{
                                              required : "Required",
                                              minLength : "Must be greater than 2 numbers",
-                                             maxlength : "Must be 15 numbers or less",
+                                             maxLength : "Must be 15 numbers or less",
                                              isNumber : "Must be a number"
 
                                          }}>
@@ -145,7 +145,7 @@ class Contact extends Component {
 
                                          </Errors>
 
-</Col>
+                            </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="email" md={2}>Email</Label>
