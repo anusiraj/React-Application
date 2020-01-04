@@ -3,6 +3,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, ModalHeader, Modal, 
     CardTitle, Breadcrumb, BreadcrumbItem, Button, Row, Col, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
 const maxLength  = (len) => (val) => !(val) || (val.length <=len);
@@ -67,14 +68,14 @@ class CommentForm extends Component {
                         <Row className="form-group">
                                 <Label htmlFor="yourname" md={3}>Your Name</Label>
                                 <Col md={11}>
-                                    <Control.text model=".yourname" id="yourname" name="yourname"
+                                    <Control.text model=".author" id="author" name="author"
                                         placeholder="Your Name"
                                         className="form-control"
                                         validators={{
                                             required, minLength: minLength(3), maxLength: maxLength(15)
                                         }}/>
                                          <Errors  className = "text-danger"
-                                         model = ".yourname"
+                                         model = ".author"
                                          show = "touched"
                                          messages = {{
                                              required : "Required",
@@ -124,7 +125,7 @@ class CommentForm extends Component {
             var options = { year: 'numeric', month: 'short', day: 'numeric' };
             const date = new Date(c.date);
             return (
-                <li>
+                <li key ={c.id  }>
                     <p>{c.comment}</p>
                     <p>-- {c.author}, {date.toLocaleDateString('en-US', options)}</p>
                 </li>
@@ -158,7 +159,27 @@ class CommentForm extends Component {
     }
 
     const DishDetail = (props) => {
-        if (props.dish != null) {
+        if (props.isLoading) {
+            return(
+                <div className = "container">
+                    <div className ="row">
+                        <Loading />
+                    </div>
+                </div>
+            );
+        }
+        else if (props.errMess)  {
+            return(
+                <div className = "container">
+                    <div className ="row">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            );
+        }
+
+
+        else if (props.dish != null) {
             return (
                 <div class = "container">
                     <div className = "row">
